@@ -13,6 +13,7 @@ public class Estudiante {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaDeNacimiento = fechaDeNacimiento;
+        this.edad = edad;
         this.estado = estado;
         this.idEstudiante++;
     }
