@@ -5,7 +5,7 @@ public class GestorAcademico {
     public GestorAcademico instanciaGestorAcademico;
     private ArrayList<Estudiante> listaEstudiante;
     private ArrayList <Curso> listaCurso;
-    private HashMap <Estudiante,Curso> listaRegistro;
+    private HashMap <Integer,Integer> listaRegistro;
 
     private GestorAcademico() {
         if(listaCurso == null) {
