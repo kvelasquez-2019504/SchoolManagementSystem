@@ -1,60 +1,28 @@
 import java.util.Date;
-
-public class Estudiante {
-    private static int idEstudiante;
-    private String nombre;
-    private String apellido;
-    private Date fechaDeNacimiento;
-    private int edad;
+import java.math.BigInteger;
+public class Estudiante extends Persona {
+    private int idEstudiante;
     private String estado;
 
-    public Estudiante( String nombre, String apellido, Date fechaDeNacimiento
-            ,int edad, String estado) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.fechaDeNacimiento = fechaDeNacimiento;
-        this.edad = edad;
+    public Estudiante(int cui,int idEstudiante, String nombre, String apellido, Date fechaDeNacimiento
+            ,int edad, String genero, String estado) {
+        super(cui,nombre,apellido,fechaDeNacimiento,genero,edad);
         this.estado = estado;
-        this.idEstudiante++;
+        this.idEstudiante=idEstudiante;
     }
 
-    private Estudiante() {
+    public Estudiante(int cui, String nombre, String apellido, Date fechaDeNacimiento
+            ,int edad, String genero, String estado) {
+        super(cui, nombre, apellido, fechaDeNacimiento, genero, edad);
+        this.estado = estado;
     }
 
-    public static int getIdEstudiante() {
-        return idEstudiante;
+    public int getIdEstudiante() {
+        return this.idEstudiante;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public Date getFechaDeNacimiento() {
-        return fechaDeNacimiento;
-    }
-
-    public void setFechaDeNacimiento(Date fechaDeNacimiento) {
-        this.fechaDeNacimiento = fechaDeNacimiento;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setIdEstudiante(int idEstudiante) {
+        this.idEstudiante = idEstudiante;
     }
 
     public String getEstado() {
@@ -66,11 +34,8 @@ public class Estudiante {
     }
 
     public void mostrarDatosEstudiante(){
-        System.out.println("ID Estudiante: "+idEstudiante);
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Apellido: " + apellido);
-        System.out.println("Fecha de nacimiento: " + fechaDeNacimiento);
-        System.out.println("Edad: " + edad);
+        this.mostrarDatosPersona();
+        System.out.println("ID Estudiante: "+this.idEstudiante);
         System.out.println("Estado: " + estado);
     }
 }

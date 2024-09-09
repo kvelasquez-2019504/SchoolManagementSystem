@@ -1,7 +1,7 @@
 import java.security.PublicKey;
 
 public class Curso {
-    private static int idCurso;
+    private int idCurso;
     private String nombreCurso;
     private String descripcion;
     private double numeroCreditos;
@@ -9,17 +9,29 @@ public class Curso {
 
     private Curso(){}
 
+    public Curso(int idCurso,String nombreCurso, String descripcion,
+                 double numeroCreditos, String version) {
+        this.nombreCurso = nombreCurso;
+        this.descripcion = descripcion;
+        this.numeroCreditos = numeroCreditos;
+        this.version = version;
+        this.idCurso=idCurso;
+    }
+
     public Curso(String nombreCurso, String descripcion,
                  double numeroCreditos, String version) {
         this.nombreCurso = nombreCurso;
         this.descripcion = descripcion;
         this.numeroCreditos = numeroCreditos;
         this.version = version;
-        this.idCurso++;
     }
 
     public int getIdCurso() {
         return idCurso;
+    }
+
+    public void setIdCurso(int idCurso) {
+        this.idCurso = idCurso;
     }
 
     public String getNombreCurso() {
