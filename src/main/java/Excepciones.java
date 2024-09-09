@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 class EstudianteYaInscritoException extends Exception {
     public EstudianteYaInscritoException(String mensaje) {
         super(mensaje);
@@ -41,16 +39,61 @@ public class Excepciones extends Exception {
 
     public void estudianteNoMatriculado (Estudiante estudiante) throws Excepciones {
         GestorAcademico gestorAcademico = GestorAcademico.getInstanciaGestorAcademico();
-        if(!gestorAcademico.getListaEstudiante().contains(estudiante)){
-            throw new Excepciones("Estudiante no matriculado");
+        int limite=0;
+        for(Estudiante buscarEstudiante: gestorAcademico.getListaEstudiante()){
+            if(estudiante.getCui() == buscarEstudiante.getCui()){
+                break;
+            }else {
+                limite++;
+                if(limite == gestorAcademico.getListaEstudiante().size()){
+                    throw new Excepciones("El estudiante no esta matriculado");
+                }
+            }
+        }
+    }
+    public void estudianteNoMatriculado (int idEstudiante) throws Excepciones {
+        GestorAcademico gestorAcademico = GestorAcademico.getInstanciaGestorAcademico();
+        int limite=0;
+        for(Estudiante buscarEstudiante: gestorAcademico.getListaEstudiante()){
+            if(idEstudiante == buscarEstudiante.getIdEstudiante()){
+                break;
+            }else {
+                limite++;
+                if(limite == gestorAcademico.getListaEstudiante().size()){
+                    throw new Excepciones("El estudiante no esta matriculado");
+                }
+            }
         }
     }
 
-    public void estudianteYaTieneCurso(Estudiante estudiante, int idCurso) throws EstudianteYaInscritoException {
+    public void cursoNoCreado (int idCurso) throws Excepciones {
         GestorAcademico gestorAcademico = GestorAcademico.getInstanciaGestorAcademico();
-        Integer buscarCurso = gestorAcademico.getListaRegistro().get(Integer.valueOf(estudiante.getIdEstudiante()));
-        if(buscarCurso == idCurso){
+        int limite=0;
+        for(Curso buscarCurso: gestorAcademico.getListaCurso()){
+            if(idCurso == buscarCurso.getIdCurso()){
+                break;
+            }else {
+                limite++;
+                if(limite == gestorAcademico.getListaCurso().size()){
+                    throw new Excepciones("El curso no esta creado");
+                }
+            }
+        }
+    }
+
+    public void estudianteYaTieneCurso(Estudiante estudiante, Curso curso) throws EstudianteYaInscritoException {
+        GestorAcademico gestorAcademico = GestorAcademico.getInstanciaGestorAcademico();
+        Curso buscarCurso = gestorAcademico.getListaRegistro().get(curso.getNombreCurso());
+       if(buscarCurso !=null){
             throw new EstudianteYaInscritoException("El estudiante ya esta inscrito al curso");
+        }
+    }
+
+    public void estudianteNoTieneCurso(Estudiante estudiante, int idCurso) throws EstudianteNoInscritoEnCursoException {
+        GestorAcademico gestorAcademico = GestorAcademico.getInstanciaGestorAcademico();
+        Curso buscarCurso = gestorAcademico.getListaRegistro().get(estudiante);
+        if (buscarCurso==null || idCurso != buscarCurso.getIdCurso()) {
+            throw new EstudianteNoInscritoEnCursoException("El estudiante "+estudiante.getNombre() +" no esta inscrito al curso " + idCurso);
         }
     }
 }

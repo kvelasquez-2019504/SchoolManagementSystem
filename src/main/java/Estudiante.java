@@ -1,5 +1,4 @@
 import java.util.Date;
-import java.math.BigInteger;
 public class Estudiante extends Persona {
     private int idEstudiante;
     private String estado;
